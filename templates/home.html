@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problem-Solving</title>
+    <link rel="icon" type="image/x-icon" href="https://tse1.mm.bing.net/th?id=OIP.xVVoolJezwwTwFfVM1KBGAHaGG&pid=Api&P=0&h=180">
+   
+    <style>
+      /* Add these styles to the existing <style> block */
+        .image{
+            border-radius: 7px;
+            margin-top: 13%;
+        }
+/* Improve header and navigation */
+.header {
+    background-color: #3d3b81;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.header .logo img{
+  border-radius: 7px;
+  margin-top: 13%;
+}
+
+.header nav a {
+    margin-left: 15px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.header nav a:hover {
+    color: #ffcc00;
+}
+
+/* Improve card styling */
+.card {
+    border: 2px solid #3d3b81;
+    width: 220px;
+    background-color: #b3b6ba;
+    border-radius: 7px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    min-height: 350px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card button {
+    background-color: #3d3b81;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.card button:hover {
+    background-color: #2a285e;
+}
+
+/* Improve popup styling */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    z-index: 1001;
+}
+
+.popup input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.popup button {
+    background-color: #3d3b81;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.popup button:hover {
+    background-color: #2a285e;
+}
+        
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Ensure the body and container take full height */
+body, .background {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Full viewport height */
+}
+
+.container {
+  flex: 1; /* Allow container to grow and push footer down */
+}
+
+body {
+  background-size: cover;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  margin: 0;
+  padding: 80px 0 0px;
+  background-color: #898993;
+  background-image: url("https://tse1.mm.bing.net/th?id=OIP.XP0p2gMuS0_SaO4IL8Ig_AHaEo&pid=Api&P=0&h=180");
+  background-size: 100vw 100vh; /* Fixes image to viewport dimensions */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: Roboto, Libre Franklin, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  display: block;
+  line-height: 1.42857143;
+}
+
+@media only screen and (max-width: 555px) {
+  body {
+    background-color: rgb(62, 59, 59);
+  }
+}
+
+/* Background */
+.background {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  position: relative;
+}
+
+/* Header Section */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background-color: #3d3b81;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  color: white;
+  z-index: 1000;
+}
+
+.header .logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.header nav a {
+  margin-left: 15px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.header nav a:hover {
+  color: #ffcc00;
+}
+
+/* Main Content Container */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  position: relative;
+}
+
+
+
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 2px solid #3d3b81;
+  width: 220px;
+  background-color: #b3b6ba;
+  border-radius: 7px;
+  padding: 20px;
+  min-height: 350px;
+}
+
+.card p {
+  padding: 10px; /* Add 10px padding to the paragraph */
+}
+
+/* Image */
+.image img {
+  width: 180px;
+  height: 100px;
+  object-fit: contain;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.capsule {
+  padding: 6px 8px;
+  margin-top: 10px;
+}
+
+.capsule span {
+  display: inline-block;
+  padding: 4px 8px;
+  border: 1px solid #000;
+  border-radius: 7px;
+  font-size: 16px;
+  box-shadow: -4px -2px 5px rgb(97, 94, 94);
+}
+
+/* Buttons */
+button {
+  border: transparent;
+  margin-top: auto;
+  border-radius: 7px;
+  background-color: white;
+  padding: 5px 15px;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+button:hover {
+  background-color: #08296ec4;
+  color: #fff;
+}
+
+/* Logo Section */
+.logo-container {
+  position: absolute;
+  top: 55px;
+  left: 10px;
+  z-index: 1000;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-container img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: white;
+
+  padding: 5px;
+}
+
+ /* Profile section should override the container */
+        .profile-section {
+        position: fixed;
+        top: 60px;
+        left: -250px;
+        width: 200px;
+        background-color: #3d3b81;
+        color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        transition: left 0.3s ease-in-out;
+        z-index: 1000; /* Above all elements */
+        }
+
+        .profile-section img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto 10px;
+        }
+
+        .profile-section h3 {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .profile-section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .profile-section ul li {
+            padding: 8px;
+            text-align: center;
+            background-color: white;
+            color: #333;
+            border-radius: 4px;
+            margin: 5px 0;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .profile-section ul li:hover {
+            background-color: #ddd;
+        }
+
+.close-btn {
+  text-align: right;
+  cursor: pointer;
+  font-size: 18px;
+  color: white;
+}
+
+/* Popup Section */
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  z-index: 1001;
+}
+
+.popup input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.popup button {
+  margin-right: 5px;
+}
+
+/* Overlay */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+/* Sliding Box */
+.sliding-box {
+  position: fixed;
+  top: 50px;
+  right: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: #08296ec4;
+  color: white;
+  box-shadow: -4px 0 8px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  transition: right 0.3s ease-in-out;
+  padding: 20px;
+  z-index: 1000;
+
+  
+}
+
+.sliding-box h3 {
+  text-align: center;
+  padding: 10px;
+  background-color: #3d3b81;
+  margin: 0;
+}
+
+.sliding-box ul {
+  list-style-type: none;
+  padding: 15px;
+  margin: 0;
+}
+
+.sliding-box ul li {
+  margin: 10px 0;
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.sliding-box ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  display: block;
+}
+
+.sliding-box ul li:hover {
+  background-color: #ddd;
+}
+
+/* Footer */
+.footer {
+  background-color: #282A35;
+  color: white;
+  text-align: center;
+  width: 100%;
+  z-index: 1001;
+  position: relative; /* Change to relative */
+  margin-top: 30px; /* Push footer to the bottom */
+  display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 1%;
+          
+}
+
+
+/* .footer-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 6%;
+          margin: 10px;
+      } */
+
+      .footer-logo img {
+          width: 200px;
+          /* width: 25%; */
+          height: 134px;
+          margin-bottom: 20px;
+          border-radius: 14px;
+          
+      }
+
+      .footer-links {
+          display: flex;
+          width: 100%;
+          justify-content: space-around;
+          gap: 50px;
+          flex-wrap: wrap;
+      }
+
+      .footer-column {
+          text-align: left;
+          max-width: 250px;
+      }
+
+      .footer-column h3 {
+          border-bottom: 2px solid #ffcc00;
+          padding-bottom: 5px;
+          display: inline-block;
+      }
+
+      .footer-column ul {
+          list-style-type: none;
+          padding: 0;
+      }
+
+      .footer-column ul li {
+          margin: 8px 0;
+      }
+
+      .footer-column ul li a {
+          color: white;
+          text-decoration: none;
+          transition: color 0.3s;
+      }
+
+      .footer-column ul li a:hover {
+          color: #ffcc00;
+      }
+
+/* Toggle Button */
+.toggle-button {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 5px;
+    height: 70px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    z-index: 1002; /* Ensure toggle button is on top of other elements */
+    }
+
+    .toggle-button:hover {
+    background-color: #004095;
+    }
+
+    </style>
+</head>
+<body>
+
+    <div class="background">
+
+        
+    <!-- Existing Website Content -->
+    <div class="header">
+      <div class="logo" id="web_logo">
+        <img src="static\img\pic (6).jpg" alt="web_logo" height="40px" width="60">
+    </div>
+    
+
+        <nav>
+            <!-- <a href="#home.html ">Home</a> -->
+            <a href="#footer-links">About</a>
+            <a href="#footer-links">Services</a>
+            <a href="#footer-links">Contact</a>
+        </nav>
+    </div>
+
+    <!-- Cards Container (Horizontal) -->
+    <div class="container">
+        <div class="card mean">
+            <div class="image">
+                <img src="https://tse4.mm.bing.net/th?id=OIP.JBnuM7dROAjHjFLyCupweAHaE4&pid=Api&P=0&h=180" alt="Mean symbol">
+            </div>
+            <div class="capsule">
+                <span>Mean</span>
+            </div>
+            <div class="content">
+                <!-- <h2>Definition</h2> -->
+                <p>The mean is the average of a set of numbers. It is calculated by adding all the numbers together and dividing by their count.</p>
+            </div>
+            <button onclick="openPopup('mean')">Calculate</button>
+        </div>
+
+        <div class="card median">
+            <div class="image">
+                <img src="https://tse2.mm.bing.net/th?id=OIP.wokoOk1GtOlyuM0_T-lnJgAAAA&pid=Api&P=0&h=180" alt="Median symbol">
+            </div>
+            <div class="capsule">
+                <span>Median</span>
+            </div>
+            <div class="content">
+                <!-- <h2>Definition</h2> -->
+                <p>The median is the middle value in a set of numbers when arranged in order. If the set has an even count, it is the average of the two middle numbers.</p>
+            </div>
+            <button onclick="openPopup('median')">Calculate</button>
+        </div>
+
+        <div class="card card3">
+            <div class="image">
+                <img src="https://tse4.mm.bing.net/th?id=OIP.auawrRw96GEiwTde1_ZKDQHaE0&pid=Api&P=0&h=180" alt="Standard Deviation symbol">
+            </div>
+            <div class="capsule">
+                <span>Standard Deviation</span>
+            </div>
+            <div class="content">
+                <!-- <h2>Definition</h2> -->
+                <p>The standard deviation measures how spread out numbers are in a dataset. Low standard deviation means the numbers are close to the mean.</p>
+            </div>
+            <button onclick="openPopup('stddev')">Calculate</button>
+        </div>
+
+        <div class="card card4">
+            <div class="image">
+                <img src="https://www.investopedia.com/thmb/Yp5KuvL1t2aMjUDLEMa7R9xSNqc=/1280x640/filters:no_upscale():max_bytes(150000):strip_icc()/latex_104ab167efe3f6e76039876d42dfde0e-5c5b1b7746e0fb00017dcf53.jpg" alt="Variance symbol">
+            </div>
+            <div class="capsule">
+                <span>Variance</span>
+            </div>
+            <div class="content">
+                <!-- <h2>Definition</h2> -->
+                <p>The variance is the average of the squared differences from the mean. It tells how much the values differ from the mean.</p>
+            </div>
+            <button onclick="openPopup('variance')">Calculate</button>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="popup">
+        <h3>Enter Numbers (comma separated)</h3>
+        <input type="text" id="dataInput" placeholder="e.g. 1,2,3,4">
+        <button onclick="calculate()">Submit</button>
+        <button onclick="closePopup()">Cancel</button>
+        <p id="result"></p>
+    </div>
+
+    <!-- Sliding Box -->
+    <div class="sliding-box" id="slidingBox">
+        <h3>Topics</h3>
+        <ul>
+            <form action="{{ url_for('Random_Variables') }}" method="get" style="display: inline;">
+                <li> <button class="nav-button"> Random Variables </button> </li>
+              </form> 
+
+            <form action="{{ url_for('Probability') }}" method="get" style="display: inline;">
+                <li> <button class="nav-button"> Probability </button> </li>
+              </form> 
+
+            <form action="{{ url_for('Hypothesis') }}" method="get" style="display: inline;">
+            <li> <button class="nav-button"> Hypothesis Testing </button> </li>
+            </form>  
+
+            <form action="{{ url_for('correlation_regression') }}" method="get" style="display: inline;">
+                <li> <button class="nav-button"> Correlation & Regression </button> </li>
+              </form> 
+            
+        </ul>
+    </div>
+
+    <!-- Toggle Button for the Sliding Box -->
+    <button class="toggle-button" id="toggleButton">&#8594;</button>
+
+        <!-- Footer Section -->
+    <div class="footer">
+      <!-- <div class="footer-container"> -->
+          
+
+          <!-- Footer Links -->
+          <div class="footer-links" id="footer-links">
+
+                <!-- Logo Section -->
+              <div class="footer-logo">
+                <img src="static\img\pic (6).jpg" alt="Your Logo">
+              </div>
+
+              <div class="footer-column">
+                  <h3>About</h3>
+                  <p>We provide a math problem-solving platform with various statistical tools and resources.</p>
+              </div>
+              <div class="footer-column">
+                  <h3>Services</h3>
+                  <ul>
+                      <li><a href="#">Math Calculators</a></li>
+                      <li><a href="#">Probability Tools</a></li>
+                      <li><a href="#">Statistics Tutorials</a></li>
+                  </ul>
+              </div>
+              <div class="footer-column">
+               
+                  <h3>Contact</h3>
+                  <p>Email: support@mathsolver.com</p>
+                  <p>Phone: +91 1234567890</p>
+              </div>
+          </div>
+     
+    </div>
+</div>
+
+    <!-- <footer>
+        <p>&copy; 2025 Random Variables Guide. All rights reserved.</p>
+    </footer> -->
+
+    <script>
+        const toggleButton = document.getElementById('toggleButton');
+        const slidingBox = document.getElementById('slidingBox');
+
+        toggleButton.addEventListener('click', () => {
+            const isOpen = slidingBox.style.right === '0px';
+            if (isOpen) {
+                slidingBox.style.right = '-250px';
+                toggleButton.innerHTML = '&#8594;';
+            } else {
+                slidingBox.style.right = '0px';
+                toggleButton.innerHTML = '&#8592;';
+            }
+        });
+
+        const logoContainer = document.getElementById("logoContainer");
+        const profileSection = document.getElementById("profileSection");
+        const closeProfile = document.getElementById("closeProfile");
+
+        logoContainer.addEventListener("click", () => {
+            profileSection.style.left = "10px"; // Slide open
+        });
+
+        closeProfile.addEventListener("click", () => {
+            profileSection.style.left = "-250px"; // Slide close
+        });
+// calculation home 
+        function openPopup(type) {
+          document.getElementById('popup').style.display = 'block';
+          document.getElementById('overlay').style.display = 'block';
+          document.getElementById('popup').dataset.type = type;
+          document.getElementById('dataInput').value = '';
+          document.getElementById('result').innerText = '';
+      }
+      function closePopup() {
+          document.getElementById('popup').style.display = 'none';
+          document.getElementById('overlay').style.display = 'none';
+      }
+      function calculate() {
+          const type = document.getElementById('popup').dataset.type;
+          const input = document.getElementById('dataInput').value;
+          const numbers = input.split(',').map(Number);
+          let result = 'Invalid input';
+          if (numbers.length > 0 && numbers.every(n => !isNaN(n))) {
+              if (type === 'mean') {
+                  result = 'Mean: ' + (numbers.reduce((a, b) => a + b, 0) / numbers.length);
+              } else if (type === 'median') {
+                  numbers.sort((a, b) => a - b);
+                  const mid = Math.floor(numbers.length / 2);
+                  result = numbers.length % 2 === 0 ? 'Median: ' + ((numbers[mid - 1] + numbers[mid]) / 2) : 'Median: ' + numbers[mid];
+              } else if (type === 'stddev') {
+                  const mean = numbers.reduce((a, b) => a + b, 0) / numbers.length;
+                  const variance = numbers.reduce((a, b) => a + Math.pow(b - mean, 2), 0) / numbers.length;
+                  result = 'Standard Deviation: ' + Math.sqrt(variance).toFixed(2);
+              } else if (type === 'variance') {
+                  const mean = numbers.reduce((a, b) => a + b, 0) / numbers.length;
+                  result = 'Variance: ' + (numbers.reduce((a, b) => a + Math.pow(b - mean, 2), 0) / numbers.length).toFixed(2);
+              }
+          }
+          document.getElementById('result').innerText = result;
+      }
+
+      function calculateCorrelation() {
+            let xValues = document.getElementById("x_values").value.split(",").map(Number);
+            let yValues = document.getElementById("y_values").value.split(",").map(Number);
+
+      }
+
+    </script>
+
+
+</body>
+</html>

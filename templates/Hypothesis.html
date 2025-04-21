@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="https://tse1.mm.bing.net/th?id=OIP.xVVoolJezwwTwFfVM1KBGAHaGG&pid=Api&P=0&h=180">
+    <title>Hypothesis Testing</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='common.css') }}">
+    <!-- <style>
+        /* Section Styling */
+section {
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #b71034;
+    font-size: 28px;
+    margin-top: 30px;
+    border-bottom: 2px solid #b71034;
+    padding-bottom: 10px;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+table th, table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+table th {
+    background-color: #f4f4f4;
+}
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #106864;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            color: white;
+        }
+
+        header p {
+            font-size: 1.2em;
+        }
+
+        nav {
+            background-color: #333;
+            overflow: hidden;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            float: left;
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            text-align: center;
+        }
+
+        nav a:hover {
+            background-color: #575757;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            width: 90%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column; 
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        h1, h2 {
+            color: #b71034;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        /* Floating Button */
+        .floating-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: transparent;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: grab;
+            background-image: url('https://tse2.mm.bing.net/th?id=OIP.yqgu7VW-08-_NVsP9eHDBQHaHa&pid=Api&P=0&h=180');
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        /* Pop-up Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+
+        /* Overlay Background */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        /* Close Button */
+        .close-btn {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style> -->
+
+    </head>
+<body>
+    <header>
+        <h1>Understanding Hypothesis Testing</h1>
+        <p>A Comprehensive Guide</p>
+    </header>
+
+    <nav>
+        <a href="#introduction">Introduction</a>
+        <a href="#types">Types of Tests</a>
+        <a href="#steps">Steps in Hypothesis Testing</a>
+        <a href="#examples">Examples</a>
+        <a href="{{ url_for('home') }}">Home</a>
+
+    </nav>
+
+    <div class="container">
+        <!-- Introduction Section -->
+        <section id="introduction">
+            <h2>Introduction to Hypothesis Testing</h2>
+            <p>Hypothesis testing is a statistical method used to make decisions or inferences about a population based on sample data. It is a fundamental tool in statistics that helps researchers and data scientists determine whether there is enough evidence to support a specific claim about a population parameter.</p>
+            <p>Hypothesis testing involves two competing hypotheses:</p>
+            <ul>
+                <li><strong>Null Hypothesis (H₀):</strong> This is a statement that there is no effect or no difference. It represents the default position or the status quo. For example, "The mean height of men is equal to 70 inches."</li>
+                <li><strong>Alternative Hypothesis (H₁):</strong> This is a statement that there is an effect or a difference. It represents what the researcher aims to prove. For example, "The mean height of men is not equal to 70 inches."</li>
+            </ul>
+            <p>The goal of hypothesis testing is to determine whether to reject the null hypothesis in favor of the alternative hypothesis based on the sample data.</p>
+        </section>
+
+        <!-- Types of Tests Section -->
+        <section id="types">
+            <h2>Types of Hypothesis Tests</h2>
+            <p>There are several types of hypothesis tests, each suited for different scenarios and data types. Below are the most common types:</p>
+            <ul>
+                <li>
+                    <strong>Z-Test:</strong> 
+                    <p>Used when the sample size is large (typically n > 30) and the population variance is known. The Z-test is often used to compare the sample mean to a known population mean.</p>
+                    <p><strong>Example:</strong> Testing whether the average IQ score of a sample of students is significantly different from the known population average of 100.</p>
+                </li>
+                <li>
+                    <strong>T-Test:</strong>
+                    <p>Used when the sample size is small (typically n < 30) and the population variance is unknown. The T-test is commonly used to compare the means of two groups or to compare a sample mean to a known value.</p>
+                    <p><strong>Example:</strong> Testing whether the average test scores of two different classes are significantly different.</p>
+                </li>
+                <li>
+                    <strong>Chi-Square Test:</strong>
+                    <p>Used for categorical data to test the independence of two variables or the goodness-of-fit of an observed distribution to an expected distribution.</p>
+                    <p><strong>Example:</strong> Testing whether the distribution of blood types in a sample matches the expected distribution in the general population.</p>
+                </li>
+                <li>
+                    <strong>ANOVA (Analysis of Variance):</strong>
+                    <p>Used to compare the means of three or more groups. ANOVA helps determine whether there are any statistically significant differences between the means of the groups.</p>
+                    <p><strong>Example:</strong> Testing whether the average test scores of students from three different schools are significantly different.</p>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Steps in Hypothesis Testing Section -->
+        <section id="steps">
+            <h2>Steps in Hypothesis Testing</h2>
+            <p>Hypothesis testing follows a systematic process to ensure that conclusions are drawn correctly. Below are the key steps involved:</p>
+            <ol>
+                <li>
+                    <strong>State the Null and Alternative Hypotheses:</strong>
+                    <p>Clearly define the null hypothesis (H₀) and the alternative hypothesis (H₁). The null hypothesis typically represents no effect or no difference, while the alternative hypothesis represents the effect or difference you want to test.</p>
+                </li>
+                <li>
+                    <strong>Choose a Significance Level (α):</strong>
+                    <p>The significance level (α) is the probability of rejecting the null hypothesis when it is true. Common choices for α are 0.05 (5%) or 0.01 (1%). This value determines the threshold for statistical significance.</p>
+                </li>
+                <li>
+                    <strong>Calculate the Test Statistic:</strong>
+                    <p>Compute the test statistic (e.g., Z-score, T-score, Chi-square statistic) based on the sample data. The test statistic measures how far the sample result is from the null hypothesis.</p>
+                </li>
+                <li>
+                    <strong>Determine the Critical Value or p-value:</strong>
+                    <p>Compare the test statistic to a critical value from a statistical table or calculate the p-value. The p-value represents the probability of observing the sample data if the null hypothesis is true.</p>
+                </li>
+                <li>
+                    <strong>Make a Decision:</strong>
+                    <p>If the p-value is less than the significance level (α), reject the null hypothesis in favor of the alternative hypothesis. Otherwise, fail to reject the null hypothesis.</p>
+                </li>
+            </ol>
+        </section>
+
+        <!-- Examples Section -->
+        <section id="examples">
+            <h2>Examples of Hypothesis Testing</h2>
+            <p>Here are some practical examples of hypothesis testing in different scenarios:</p>
+            <ul>
+                <li>
+                    <strong>Example 1: Z-Test</strong>
+                    <p>A company claims that the average weight of its product is 500 grams. A sample of 50 products is taken, and the average weight is found to be 495 grams with a standard deviation of 10 grams. Use a Z-test to determine if the company's claim is valid at a 5% significance level.</p>
+                </li>
+                <li>
+                    <strong>Example 2: T-Test</strong>
+                    <p>A researcher wants to test whether a new teaching method improves student test scores. A sample of 20 students is taught using the new method, and their average score is 85 with a standard deviation of 5. The average score for the traditional method is 80. Use a T-test to determine if the new method is effective at a 1% significance level.</p>
+                </li>
+                <li>
+                    <strong>Example 3: Chi-Square Test</strong>
+                    <p>A survey is conducted to determine if there is a relationship between gender and preference for a new product. The observed frequencies are:</p>
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th>Like</th>
+                            <th>Dislike</th>
+                        </tr>
+                        <tr>
+                            <td>Male</td>
+                            <td>30</td>
+                            <td>20</td>
+                        </tr>
+                        <tr>
+                            <td>Female</td>
+                            <td>25</td>
+                            <td>25</td>
+                        </tr>
+                    </table>
+                    <p>Use a Chi-square test to determine if gender and product preference are independent at a 5% significance level.</p>
+                </li>
+            </ul>
+        </section>
+    </div>
+
+    <!-- Floating Button -->
+    <button class="floating-button" id="floatingButton">Calculate</button>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Modal Pop-up -->
+    <div class="modal" id="modal">
+        <h2>Enter Data for Calculation</h2>
+        <label for="testType">Select Test:</label>
+        <select id="testType">
+            <option value="z-test">Z-Test</option>
+            <option value="t-test">T-Test</option>
+            <option value="chi-square">Chi-Square Test</option>
+        </select>
+
+        <label for="sampleData">Enter Sample Data (comma-separated):</label>
+<input type="text" id="sampleData" placeholder="e.g., 5, 10, 15, 20">
+
+<label for="populationMean">Enter Population Mean:</label>
+<input type="number" id="populationMean" placeholder="e.g., 12">
+
+        <button id="calculateBtn">Calculate</button>
+        <button onclick="closeModal()">Close</button>
+
+        <h3>Result:</h3>
+        <p id="result"></p>
+    </div>
+
+    
+
+
+    <script>
+
+        document.getElementById("calculateBtn").addEventListener("click", calculateHypothesis);
+
+        // Open Modal
+        document.getElementById("floatingButton").addEventListener("click", function() {
+            document.getElementById("modal").style.display = "block";
+            document.getElementById("overlay").style.display = "block";
+        });
+
+        // Close Modal
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+            document.getElementById("overlay").style.display = "none";
+        }
+
+
+        function calculateHypothesis() {
+            const resultElement = document.getElementById("result");
+            resultElement.innerText = "Calculating...";
+
+            const testType = document.getElementById("testType").value;
+            const sampleData = document.getElementById("sampleData").value
+                .split(",")
+                .map(n => parseFloat(n.trim()))  // Convert to float safely
+                .filter(n => !isNaN(n));         // Remove invalid values
+
+            const populationMean = parseFloat(document.getElementById("populationMean").value);
+
+            if (sampleData.length === 0 || isNaN(populationMean)) {
+                resultElement.innerText = "Invalid input values.";
+                return;
+            }
+
+            // Send data to Flask server
+            fetch('/calculate_hypothesis', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    test_type: testType,
+                    sample_data: sampleData,
+                    population_mean: populationMean
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    resultElement.innerText = "Error: " + data.error;
+                } else {
+                    resultElement.innerText = `Test Statistic: ${data.test_statistic}, p-value: ${data.p_value}`;
+                }
+            })
+            .catch(error => {
+                resultElement.innerText = "Error: Unable to connect to the server.";
+            });
+        }
+
+    </script>
+</body>
+</html>

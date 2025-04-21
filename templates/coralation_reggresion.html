@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="https://tse1.mm.bing.net/th?id=OIP.xVVoolJezwwTwFfVM1KBGAHaGG&pid=Api&P=0&h=180">
+    <title>Correlation and Regression</title>
+    <!-- <link rel="stylesheet" href="rgg.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='common.css') }}">
+<!-- <style>
+        
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.content {
+padding: 20px 20px 20px;
+}
+
+header {
+    background-color: #106864;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1{
+    font-size: 2.5em;
+    color: white;
+}
+
+header p{
+    font-size: 1.2em;
+}
+
+
+nav {
+    background-color: #333;
+    overflow: hidden;
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+
+
+nav a {
+    float: left;
+    color: white;
+    text-decoration: none;
+    padding: 14px 20px;
+    text-align: center;
+}
+
+nav a:hover {
+    background-color: #575757;
+}
+
+.container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+h1, h2 {
+     
+color: #b71034;
+font-size: 28px;
+margin-top: 30px;
+}
+
+p{
+    line-height: 1.6;
+font-size: 16px;
+}
+
+input, select {
+/* padding: 8px; */
+margin-top: 5px;
+width: 100%;
+background-color: #444;
+/* border: 1px solid #666/; */
+color: white;
+}
+
+
+
+footer {
+    background-color: #b71034;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+
+
+ul {
+    padding-left: 20px;
+}
+
+/* Floating Button */
+.floating-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: transparent;
+    border: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: grab;
+    background-image: url('https://tse2.mm.bing.net/th?id=OIP.yqgu7VW-08-_NVsP9eHDBQHaHa&pid=Api&P=0&h=180');
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+/* Pop-up Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.model input{
+    padding: 2px;
+    border: solid 1px;
+}
+
+
+/* Overlay Background */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+/* Close Button */
+.close-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.floating-button {
+    z-index: 2000; /* Higher than other elements */
+}
+
+
+    
+        /* Add these styles to the existing <style> block */
+
+/* Improve header and navigation */
+header {
+    background-color: #106864;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+    background-color: #333;
+    overflow: hidden;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav a {
+    float: left;
+    color: white;
+    text-decoration: none;
+    padding: 14px 20px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #575757;
+}
+
+/* Improve section styling */
+section {
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #b71034;
+    font-size: 28px;
+    margin-top: 30px;
+    border-bottom: 2px solid #b71034;
+    padding-bottom: 10px;
+}
+
+/* Improve modal styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    width: 400px;
+}
+
+.modal input, .modal select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.modal button {
+    background-color: #b71034;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.modal button:hover {
+    background-color: #8c0c28;
+}
+
+/* Improve floating button */
+.floating-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #b71034;
+    border: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.floating-button:hover {
+    background-color: #8c0c28;
+}
+
+.container {
+    padding: 20px;
+    max-width: 1200px;
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column; 
+}
+     </style>
+     <link rel="stylesheet" href="common.css"> -->
+    </head>
+<body>
+    <header>
+        <h1>Understanding Correlation and Regression</h1>
+        <p>A Comprehensive Guide</p>
+    </header>
+
+    <nav>
+        <a href="#c    orrelation">Correlation</a>
+        <a href="#methods">Methods to Find Correlation</a>
+        <a href="#regression">Regression</a>
+        <a href="#least-squares">Method of Least Squares</a>
+        <a href="#difference">Differences</a>
+        <a href="{{ url_for('home') }}">Home</a>
+
+    </nav>
+
+    <div class="container">
+        <div class="content">
+        <section id="correlation">
+            <h2>What is Correlation?</h2>
+            <p>Correlation measures the strength and direction of a linear relationship between two variables. It is represented by the correlation coefficient (<code>r</code>), which ranges from -1 to +1:</p>
+            <ul>
+                <li><strong>r = 1:</strong> Perfect positive correlation</li>
+                <li><strong>r = -1:</strong> Perfect negative correlation</li>
+                <li><strong>r = 0:</strong> No correlation</li>
+            </ul>
+        </section>
+
+        <section id="methods">
+            <h2>Methods to Find Correlation</h2>
+            <ol>
+                <li><strong>Pearson’s Correlation Coefficient:</strong> Measures the strength of a linear relationship between two variables. Formula:
+                    <code>r = Σ[(Xᵢ - X̄)(Yᵢ - Ȳ)] / √[Σ(Xᵢ - X̄)² Σ(Yᵢ - Ȳ)²]</code>
+                </li>
+                <li><strong>Spearman’s Rank Correlation:</strong> Non-parametric method based on ranking of data values.</li>
+                <li><strong>Kendall’s Tau:</strong> Measures the ordinal association between two variables.</li>
+            </ol>
+        </section>
+
+        <section id="regression">
+            <h2>What is Regression?</h2>
+            <p>Regression models the relationship between a dependent variable (Y) and one or more independent variables (X). It is primarily used for prediction and forecasting.</p>
+
+            <h3>Types of Regression</h3>
+            <ul>
+                <li><strong>Simple Linear Regression:</strong> Models the relationship between one independent variable and one dependent variable. Equation:
+                    <code>Y = β₀ + β₁X + ε</code>
+                </li>
+                <li><strong>Multiple Linear Regression:</strong> Models the relationship between multiple independent variables and a dependent variable. Equation:
+                    <code>Y = β₀ + β₁X₁ + β₂X₂ + ... + βₖXₖ + ε</code>
+                </li>
+            </ul>
+        </section>
+
+        <section id="least-squares">
+            <h2>Method of Least Squares</h2>
+            <p>The method of least squares is used to find the best-fitting line in regression analysis by minimizing the sum of the squares of the residuals (differences between observed and predicted values).</p>
+            <div class="example">
+                <h4>Example:</h4>
+                <p>If the equation for a regression line is <code>Y = 3 + 2X</code>, the method of least squares ensures that the residuals are minimized for this line.</p>
+            </div>
+        </section>
+
+        <section id="difference">
+            <h2>Differences Between Correlation and Regression</h2>
+            <ul>
+                <li><strong>Purpose:</strong> Correlation quantifies the degree of relationship, while regression models the relationship.</li>
+                <li><strong>Direction:</strong> Correlation is bidirectional; regression is unidirectional (predicts Y from X).</li>
+                <li><strong>Values:</strong> Correlation produces a coefficient; regression produces an equation.</li>
+            </ul>
+        </section>
+    </div>
+
+    </div>
+
+    <!-- Floating Button -->
+    <button class="floating-button" id="floatingButton"></button>
+
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Modal Pop-up -->
+    <div class="modal" id="modal">
+        <h2>Enter Data for Calculation</h2>
+        <label for="calcType">Select Calculation:</label>
+        <select id="calcType">
+            <option value="pearson">Pearson Correlation</option>
+            <option value="spearman">Spearman Correlation</option>
+            <option value="kendall">Kendall’s Tau</option>
+            <option value="linear_regression">Linear Regression</option>
+        </select>
+
+        <label for="xValues">Enter X values (comma-separated):</label>
+        <input type="text" id="xValues" placeholder="e.g., 1, 2, 3, 4, 5">
+
+        <label for="yValues">Enter Y values (comma-separated):</label>
+        <input type="text" id="yValues" placeholder="e.g., 2, 4, 6, 8, 10">
+
+        <button onclick="sendData()">Calculate</button>
+        <button onclick="closeModal()">Close</button>
+
+        <h3>Result:</h3>
+        <div id="result"></div>
+    </div>
+
+<script>
+    document.getElementById("floatingButton").addEventListener("click", function() {
+    document.getElementById("modal").style.display = "block";
+    document.getElementById("overlay").style.display = "block";
+});
+
+function closeModal() {
+    document.getElementById("modal").style.display = "none";
+    document.getElementById("overlay").style.display = "none";
+}
+
+
+function sendData() {
+        const calcType = document.getElementById("calcType").value;
+        const xValues = document.getElementById("xValues").value.split(",").map(Number);
+        const yValues = document.getElementById("yValues").value.split(",").map(Number);
+        const resultElement = document.getElementById("result");
+
+        resultElement.innerText = "Calculating...";
+
+        if (xValues.some(isNaN) || yValues.some(isNaN)) {
+            resultElement.innerText = "Error: Please enter only numeric values.";
+            return;
+        }
+        if (xValues.length !== yValues.length) {
+            resultElement.innerText = "Error: X and Y values must have the same length.";
+            return;
+        }
+
+        fetch('/calculate_correlation', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                calculation_type: calcType,
+                x_values: xValues,
+                y_values: yValues
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                resultElement.innerText = "Error: " + data.error;
+            } else {
+                resultElement.innerText = `Result: ${JSON.stringify(data.result)}`;
+            }
+        })
+        .catch(error => {
+            resultElement.innerText = "Error: Unable to connect to the server.";
+        });
+    }
+
+</script>
+</body>
+</html>
+<!-- 437865874654736834756 -->

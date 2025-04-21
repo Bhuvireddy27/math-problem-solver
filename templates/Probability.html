@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="https://tse1.mm.bing.net/th?id=OIP.xVVoolJezwwTwFfVM1KBGAHaGG&pid=Api&P=0&h=180">
+  <title>Complete Guide to Probability Distributions</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='common.css') }}">
+  <!-- <style>
+    /* Add these styles to the existing <style> block */
+
+/* Improve header and navigation */
+header {
+    background-color: #106864;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+    background-color: #333;
+    overflow: hidden;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav a {
+    float: left;
+    color: white;
+    text-decoration: none;
+    padding: 14px 20px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #575757;
+}
+
+/* Improve section styling */
+section {
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #b71034;
+    font-size: 28px;
+    margin-top: 30px;
+    border-bottom: 2px solid #b71034;
+    padding-bottom: 10px;
+}
+
+/* Improve modal styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    width: 400px;
+}
+
+.modal input, .modal select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.modal button {
+    background-color: #b71034;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.modal button:hover {
+    background-color: #8c0c28;
+}
+
+/* Improve floating button */
+.floating-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #b71034;
+    border: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.floating-button:hover {
+    background-color: #8c0c28;
+}
+
+.container {
+    padding: 20px;
+    max-width: 1200px;
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column; 
+}
+  /* Section Styling */
+  section {
+      margin-bottom: 40px;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+      color: #b71034;
+      font-size: 28px;
+      margin-top: 30px;
+      border-bottom: 2px solid #b71034;
+      padding-bottom: 10px;
+  }
+  
+  /* Formula Styling */
+  .formula {
+      font-family: "Courier New", Courier, monospace;
+      background-color: #f9f9f9;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin-top: 20px;
+      display: block;
+  }
+  
+
+button {
+
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+}
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px gray;
+    border-radius: 10px;
+    z-index: 10;
+}
+.overlay1 {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 5;
+}
+
+body {
+font-family: Arial, sans-serif;
+background-color: #f4f4f9;
+color: #333;
+margin: 0;
+padding: 0;
+}
+
+.header {
+background-color: #106864;
+color: white;
+text-align: center;
+padding: 15px;
+position: fixed;
+width: 100%;
+top: 0;
+z-index: 1000;
+}
+
+.header h1 {
+margin: 0;
+font-size: 36px;
+color: white;
+}
+
+.content {
+padding: 20px 20px 20px;
+}
+
+header {
+background-color: #b71034;
+color: white;
+padding: 20px;
+text-align: center;
+}
+
+header h1 {
+color: white;
+}
+nav {
+background-color: #333;
+overflow: hidden;
+position: sticky;
+top: 0;
+z-index: 100;
+}
+nav a {
+float: left;
+color: white;
+text-decoration: none;
+padding: 14px 20px;
+text-align: center;
+}
+nav a:hover {
+background-color: #575757;
+}
+h2 {    
+color: #b71034;
+font-size: 28px;
+margin-top: 30px;
+}
+p {
+line-height: 1.6;
+font-size: 16px;
+}
+
+.formula {
+font-family: "Courier New", Courier, monospace;
+background-color: #f9f9f9;
+padding: 10px;
+border: 1px solid #ddd;
+border-radius: 5px;
+margin-top: 20px;
+display: block;
+}
+/* Floating Button */
+.floating-button {
+position: fixed;
+bottom: 20px;
+right: 20px;
+background-color: transparent;
+border: none;
+width: 60px;
+height: 60px;
+border-radius: 50%;
+cursor: grab;
+background-image: url('https://tse2.mm.bing.net/th?id=OIP.yqgu7VW-08-_NVsP9eHDBQHaHa&pid=Api&P=0&h=180');
+background-size: cover;
+background-position: center;
+box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+z-index: 1000;
+}
+/* Modal & Overlay */
+.overlay {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.7);
+z-index: 999;
+}
+.modal {
+display: none;
+background-color: white;
+padding: 20px;
+box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+border-radius: 10px;
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+z-index: 1000;
+}
+.modal input {
+padding: 2px;
+border: solid 1px;
+}
+.footer {
+background-color: #b71034;
+color: white;
+text-align: center;
+padding: 1px;
+position: fixed;
+width: 100%;
+bottom: 0;
+z-index: 1000;
+}
+.footer p {
+margin: 0;
+font-size: 14px;
+}
+/* Input container styles */
+.type-selection {
+margin-top: 15px;
+margin-bottom: 15px;
+}
+
+.run-btn, .close-btn {
+background-color: #b71034;
+color: white;
+border: none;
+padding: 10px 20px;
+cursor: pointer;
+border-radius: 5px;
+font-size: 16px;
+}
+
+.run-btn:hover, .close-btn:hover {
+background-color: #b71034;
+}
+
+
+.answer {
+margin-top: 20px;
+font-size: 20px;
+font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column; 
+}
+
+
+
+  </style> -->
+</head>
+<body onload="updateInputFields()">
+  <header>
+    <h1>Understanding Probability Distribution</h1>
+    <p>A Comprehensive Guide</p>
+  </header>
+
+  <nav>
+    <a href="#intro">Introduction to Probability Distributions</a>
+    <a href="#discrete">Discrete Probability Distributions</a>
+    <a href="#cont">Continuous Probability Distributions</a>
+    <a href="#expt">Expectation (Expected Value)</a>
+    <a href="{{ url_for('home') }}">Home</a>
+  </nav>
+
+  <div class="container">
+
+    <div class="content">
+      <section id="prob">
+      <h2 id="intro">Introduction to Probability Distributions</h2>
+      <p>A probability distribution is a statistical function that describes the likelihood of obtaining the possible values that a random variable can take. These distributions are classified into two main types:</p>
+      <ul>
+        <li><strong>Discrete Probability Distributions</strong>: Used when the set of possible outcomes is finite or countable.</li>
+        <li><strong>Continuous Probability Distributions</strong>: Used when the set of possible outcomes is infinite and uncountable (e.g., real numbers).</li>
+      </ul>
+    </section>
+      <section id="prob">
+      <h2 id="discrete">Discrete Probability Distributions</h2>
+      <p>Discrete probability distributions describe situations where the random variable can take on a finite or countable number of values. Below are some common discrete distributions:</p>
+  
+      <h3>1. Binomial Distribution</h3>
+      <p>The binomial distribution describes the number of successes in a fixed number of independent Bernoulli trials. Each trial has two outcomes: success or failure. The probability mass function (PMF) for the binomial distribution is:</p>
+      <div class="formula">
+        P(X = k) = C(n, k) * p^k * (1 - p)^(n - k)
+      </div>
+      <p>Where:</p>
+      <ul>
+        <li><strong>C(n, k)</strong> is the combination of n items taken k at a time,</li>
+        <li><strong>p</strong> is the probability of success on a single trial,</li>
+        <li><strong>n</strong> is the number of trials,</li>
+        <li><strong>k</strong> is the number of successes.</li>
+      </ul>
+      
+      <div class="example">
+        <h4>Example: Coin Toss</h4>
+        <p>If a coin is tossed 5 times (n = 5), the probability of getting exactly 3 heads (k = 3) is:</p>
+        <div class="formula">
+          P(X = 3) = C(5, 3) * 0.5^3 * 0.5^2 = 10 * 0.125 * 0.25 = 0.3125
+        </div>
+      </div>
+  
+      <h3>2. Poisson Distribution</h3>
+      <p>The Poisson distribution is used for counting the number of events that occur in a fixed interval of time or space, given the average rate of occurrence. The probability mass function for the Poisson distribution is:</p>
+      <div class="formula">
+        P(X = k) = (λ^k * e^(-λ)) / k!
+      </div>
+      <p>Where:</p>
+      <ul>
+        <li><strong>λ</strong> is the average number of occurrences in the interval.</li>
+        <li><strong>k</strong> is the actual number of occurrences of the event.</li>
+        <li><strong>e</strong> is Euler's number, approximately 2.71828.</li>
+      </ul>
+  
+      <div class="example">
+        <h4>Example: Phone Calls</h4>
+        <p>If a call center receives 4 calls per minute (λ = 4), the probability of receiving exactly 2 calls in a minute is:</p>
+        <div class="formula">
+          P(X = 2) = (4^2 * e^(-4)) / 2! ≈ 0.1465
+        </div>
+      </div>
+    </section>
+      <section id="prob">
+      <h2 id="cont">Continuous Probability Distributions</h2>
+      <p>Continuous probability distributions describe situations where the random variable can take an infinite number of values within a given range. Common continuous distributions include:</p>
+  
+      <h3>1. Normal Distribution</h3>
+      <p>The normal distribution, also known as the Gaussian distribution, is one of the most widely used continuous distributions. It is symmetric and follows a bell-shaped curve. The probability density function (PDF) for the normal distribution is:</p>
+      <div class="formula">
+        f(x) = (1 / (σ√(2π))) * e^(- (x - μ)^2 / 2σ^2)
+      </div>
+      <p>Where:</p>
+      <ul>
+        <li><strong>μ</strong> is the mean of the distribution,</li>
+        <li><strong>σ</strong> is the standard deviation,</li>
+        <li><strong>e</strong> is Euler's number (approximately 2.71828).</li>
+      </ul>
+  
+      <div class="example">
+        <h4>Example: Human Height Distribution</h4>
+        <p>Suppose the heights of individuals in a population follow a normal distribution with a mean of 170 cm and a standard deviation of 10 cm. You can calculate the probability that a randomly chosen individual is taller than 180 cm using the Z-score formula.</p>
+      </div>
+  
+      <h3>2. Exponential Distribution</h3>
+      <p>The exponential distribution is used to model the time between events in a Poisson process. It describes the time between successive events that occur at a constant average rate. The probability density function (PDF) for the exponential distribution is:</p>
+      <div class="formula">
+        f(x) = λ * e^(-λx), for x ≥ 0
+      </div>
+      <p>Where:</p>
+      <ul>
+        <li><strong>λ</strong> is the rate parameter,</li>
+        <li><strong>x</strong> is the time between events.</li>
+      </ul>
+  
+      <div class="example">
+        <h4>Example: Time Between Calls</h4>
+        <p>If the average time between customer service calls is 2 minutes (λ = 0.5), the probability of the time between two calls being greater than 3 minutes is:</p>
+        <div class="formula">
+          P(X > 3) = e^(-0.5 * 3) ≈ 0.2231
+        </div>
+      </div>
+  
+      <h3>3. Uniform Distribution</h3>
+      <p>The uniform distribution is used when all outcomes are equally likely. The probability density function (PDF) for the uniform distribution is:</p>
+      <div class="formula">
+        f(x) = 1 / (b - a), for a ≤ x ≤ b
+      </div>
+      <p>Where:</p>
+      <ul>
+        <li><strong>a</strong> is the lower bound of the distribution,</li>
+        <li><strong>b</strong> is the upper bound of the distribution.</li>
+      </ul>
+  
+      <div class="example">
+        <h4>Example: Fair Die Roll</h4>
+        <p>The probability of rolling a 4 on a fair six-sided die follows a uniform distribution. The probability of any specific outcome is:</p>
+        <div class="formula">
+          P(X = 4) = 1 / 6
+        </div>
+      </div>
+    </section>
+      <section id="prob"> 
+      <h2 id="expt">Expectation (Expected Value)</h2>
+      <p>The expectation, or expected value (E[X]), is a fundamental concept in probability theory. It represents the long-term average or mean value of a random variable. It gives you a sense of the "center" of a probability distribution.</p>
+  
+      <h3>1. Discrete Random Variable</h3>
+      <p>If X is a discrete random variable, its expected value is calculated as:</p>
+      <div class="formula">
+        E[X] = Σ x * P(X = x)
+      </div>
+      <p>Where:</p>
+      <ul>
+        <li><strong>Σ</strong> denotes the sum over all possible outcomes of X,</li>
+        <li><strong>P(X = x)</strong> is the probability of outcome x.</li>
+      </ul>
+  
+      <div class="example">
+        <h4>Example: Fair Die Roll</h4>
+        <p>For a fair die roll, the expected value is:</p>
+        <div class="formula">
+          E[X] = Σ (x * 1/6) = (1 + 2 + 3 + 4 + 5 + 6) / 6 = 3.5
+        </div>
+        <p>This means that, on average, you expect to roll a 3.5 (which is not possible, but it represents the center of the distribution).</p>
+      </div>
+    </div>
+  </section>
+
+    <!-- Floating Button -->
+    <button class="floating-button" id="floatingButton"></button>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+      <h2>Interactive Calculator</h2>
+      <p>Select a Probability Type:</p>
+      <select id="probabilityType" onchange="updateInputFields()">
+        <option value="binomial">Binomial</option>
+        <option value="poisson">Poisson</option>
+        <option value="normal">Normal</option>
+        <option value="exponential">Exponential</option>
+      </select>
+
+      <!-- Binomial Inputs -->
+      <div id="binomialInputs" class="type-selection" style="display: none;">
+        <label for="n">Number of Trials (n):</label>
+        <input type="number" id="n" placeholder="Enter number of trials (n)" />
+        <label for="p">Probability of Success (p):</label>
+        <input type="number" id="p" step="0.01" placeholder="Enter probability of success" />
+        <label for="k">Number of Successes (k):</label>
+        <input type="number" id="k" placeholder="Enter number of successes" />
+        <button class="run-btn" onclick="calculateBinomial()">Calculate</button>
+      </div>
+
+      <!-- Poisson Inputs -->
+      <div id="poissonInputs" class="type-selection" style="display: none;">
+        <label for="lambdaPoisson">Rate of Occurrence (λ):</label>
+        <input type="number" id="lambdaPoisson" placeholder="Enter rate of occurrence (λ)" />
+        <label for="kPoisson">Number of Events (k):</label>
+        <input type="number" id="kPoisson" placeholder="Enter number of events (k)" />
+        <button class="run-btn" onclick="calculatePoisson()">Calculate</button>
+      </div>
+
+      <!-- Normal Distribution Inputs -->
+      <div id="normalDiv" class="type-selection" style="display: none;">
+        <label for="mu">Mean (μ):</label>
+        <input type="number" id="mu" placeholder="Enter μ" />
+        <label for="sigma">Standard Deviation (σ):</label>
+        <input type="number" id="sigma" placeholder="Enter σ" />
+        <label for="xNormal">x:</label>
+        <input type="number" id="xNormal" placeholder="Enter x" />
+        <button class="run-btn" onclick="calculateNormal()">Calculate</button>
+      </div>
+
+      <!-- Exponential Distribution Inputs -->
+      <div id="exponentialDiv" class="type-selection" style="display: none;">
+        <label for="lambdaExponential">Rate (λ):</label>
+        <input type="number" id="lambdaExponential" placeholder="Enter λ" />
+        <label for="xExponential">x:</label>
+        <input type="number" id="xExponential" placeholder="Enter x" />
+        <button class="run-btn" onclick="calculateExponential()">Calculate</button>
+      </div>
+        
+      <button class="close-btn" onclick="closeModal()">Close</button>
+      <div id="result" class="answer"></div>
+    </div>
+  </div>
+
+  <script>
+    // Floating Button Dragging
+    const floatingButton = document.getElementById('floatingButton');
+    let isDragging = false;
+    let offsetX = 0;
+    let offsetY = 0;
+
+    floatingButton.addEventListener('mousedown', function(e) {
+      isDragging = true;
+      offsetX = e.clientX - floatingButton.getBoundingClientRect().left;
+      offsetY = e.clientY - floatingButton.getBoundingClientRect().top;
+      floatingButton.style.cursor = 'grabbing';
+    });
+
+    document.addEventListener('mousemove', function(e) {
+      if (isDragging) {
+        floatingButton.style.left = (e.clientX - offsetX) + 'px';
+        floatingButton.style.top = (e.clientY - offsetY) + 'px';
+      }
+    });
+
+    document.addEventListener('mouseup', function() {
+      isDragging = false;
+      floatingButton.style.cursor = 'grab';
+    });
+
+    // Floating Button Modal Trigger
+    floatingButton.addEventListener('click', function() {
+      document.getElementById('overlay').style.display = 'block';
+      document.getElementById('modal').style.display = 'block';
+    });
+
+    // Close Modal
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+      document.getElementById('overlay').style.display = 'none';
+    }
+
+    // Update Input Fields Based on Selected Distribution
+    function updateInputFields() {
+      const type = document.getElementById('probabilityType').value;
+      document.getElementById('binomialInputs').style.display = type === 'binomial' ? 'block' : 'none';
+      document.getElementById('poissonInputs').style.display = type === 'poisson' ? 'block' : 'none';
+      document.getElementById('normalDiv').style.display = type === 'normal' ? 'block' : 'none';
+      document.getElementById('exponentialDiv').style.display = type === 'exponential' ? 'block' : 'none';
+    }
+
+    // Binomial Distribution Calculation
+    function calculateBinomial() {
+      const n = parseInt(document.getElementById('n').value);
+      const p = parseFloat(document.getElementById('p').value);
+      const k = parseInt(document.getElementById('k').value);
+
+      if (isNaN(n) || isNaN(p) || isNaN(k) || p < 0 || p > 1 || k < 0 || k > n) {
+        document.getElementById('result').textContent = 'Invalid input. Please check your values.';
+        return;
+      }
+
+      const probability = binomialPMF(n, p, k);
+      document.getElementById('result').textContent = `Binomial Probability: ${probability.toFixed(4)}`;
+    }
+
+    function binomialPMF(n, p, k) {
+      const combination = factorial(n) / (factorial(k) * factorial(n - k));
+      return combination * Math.pow(p, k) * Math.pow(1 - p, n - k);
+    }
+
+    // Poisson Distribution Calculation
+    function calculatePoisson() {
+      const lambda = parseFloat(document.getElementById('lambdaPoisson').value);
+      const k = parseInt(document.getElementById('kPoisson').value);
+
+      if (isNaN(lambda) || isNaN(k) || lambda < 0 || k < 0) {
+        document.getElementById('result').textContent = 'Invalid input. Please check your values.';
+        return;
+      }
+
+      const probability = poissonPMF(lambda, k);
+      document.getElementById('result').textContent = `Poisson Probability: ${probability.toFixed(4)}`;
+    }
+
+    function poissonPMF(lambda, k) {
+      return (Math.exp(-lambda) * Math.pow(lambda, k)) / factorial(k);
+    }
+
+    // Normal Distribution Calculation
+    function calculateNormal() {
+      const mu = parseFloat(document.getElementById('mu').value);
+      const sigma = parseFloat(document.getElementById('sigma').value);
+      const x = parseFloat(document.getElementById('xNormal').value);
+
+      if (isNaN(mu) || isNaN(sigma) || isNaN(x) || sigma <= 0) {
+        document.getElementById('result').textContent = 'Invalid input. Please check your values.';
+        return;
+      }
+
+      const probability = normalCDF(x, mu, sigma);
+      document.getElementById('result').textContent = `Normal Probability (P(X ≤ x)): ${probability.toFixed(4)}`;
+    }
+
+    function normalCDF(x, mu, sigma) {
+      const z = (x - mu) / (sigma * Math.sqrt(2));
+      return (1 + erf(z)) / 2;
+    }
+
+    // Exponential Distribution Calculation
+    function calculateExponential() {
+      const lambda = parseFloat(document.getElementById('lambdaExponential').value);
+      const x = parseFloat(document.getElementById('xExponential').value);
+
+      if (isNaN(lambda) || isNaN(x) || lambda <= 0 || x < 0) {
+        document.getElementById('result').textContent = 'Invalid input. Please check your values.';
+        return;
+      }
+
+      const probability = exponentialCDF(x, lambda);
+      document.getElementById('result').textContent = `Exponential Probability (P(X ≤ x)): ${probability.toFixed(4)}`;
+    }
+
+    function exponentialCDF(x, lambda) {
+      return 1 - Math.exp(-lambda * x);
+    }
+
+    // Helper Functions
+    function factorial(n) {
+      if (n === 0 || n === 1) return 1;
+      let result = 1;
+      for (let i = 2; i <= n; i++) {
+        result *= i;
+      }
+      return result;
+    }
+
+    function erf(x) {
+      const a1 = 0.254829592;
+      const a2 = -0.284496736;
+      const a3 = 1.421413741;
+      const a4 = -1.453152027;
+      const a5 = 1.061405429;
+      const p = 0.3275911;
+
+      const sign = x < 0 ? -1 : 1;
+      const t = 1 / (1 + p * Math.abs(x));
+      const y = 1 - ((((a5 * t + a4) * t + a3) * t + a2) * t + a1) * t * Math.exp(-x * x);
+
+      return sign * y;
+    }
+  </script>
+</body>
+</html>
